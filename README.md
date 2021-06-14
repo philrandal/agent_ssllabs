@@ -2,7 +2,9 @@
 
 **Note: this package is for CheckMK version 2.x.**
 
-This Agent uses die Qualys SSL Lab REST API.  For details about the API see https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md. To check a server manually go to https://www.ssllabs.com/ssltest/index.html.
+This Agent uses die Qualys SSL Lab REST API.  For details about the API see https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md.
+ 
+To check a server manually go to https://www.ssllabs.com/ssltest/index.html.
 
 
 
