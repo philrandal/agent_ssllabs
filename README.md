@@ -34,5 +34,5 @@ Sample wato
 
 Sample agent wato
 
-![wato-agent](/doc/wato-options.png?raw=true "wato agent [SHORT TITLE]")
+![wato-agent](/doc/wato-options-agent.png?raw=true "wato agent [SHORT TITLE]")
 
