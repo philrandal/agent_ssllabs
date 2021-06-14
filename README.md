@@ -27,7 +27,7 @@ Sample output
 ![Sample](/doc/sample.png?raw=true "sample [SHORT TITLE]")
 
 Sample wato
-![wato](/doc/wato.png?raw=true "wato [SHORT TITLE]")
+![wato](/doc/wato-options.png?raw=true "wato [SHORT TITLE]")
 
 
 Sample agent output
