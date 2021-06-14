@@ -6,7 +6,7 @@ This Agent uses die Qualys SSL Lab REST API.  For details about the API see http
  
 To check a server manually go to https://www.ssllabs.com/ssltest/index.html.
 
-
+To use this check you must configure the "Qualys SSL Labs server test" special agent.
 
 Check Info:
 
