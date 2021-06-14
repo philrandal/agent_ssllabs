@@ -24,10 +24,15 @@ Check Info:
 * *perfdata*: none 
 
 Sample output
+
 ![Sample](/doc/sample.png?raw=true "sample [SHORT TITLE]")
 
 Sample wato
+
 ![wato](/doc/wato-options.png?raw=true "wato [SHORT TITLE]")
 
 
-Sample agent output
+Sample agent wato
+
+![wato-agent](/doc/wato-options.png?raw=true "wato agent [SHORT TITLE]")
+
