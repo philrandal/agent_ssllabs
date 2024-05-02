@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# License: GNU General Public License v2
+#
+#
+# Author: thl-cmk[at]outlook[dot]com
+# URL   : https://thl-cmk.hopto.org
+# Date  : 2024-04-29
+# File  : agent_ssllabs.py (params stub)
+#
+
+# based on the ssllabs plugin from Karsten Schoeke karsten.schoeke@geobasis-bb.de
+# see https://exchange.checkmk.com/p/ssllabs
+
+def agent_ssllabs_arguments(params, _hostname, _ipaddress):
+    args = []
+
+    if (ssl_hosts := params.get('ssl_hosts')) is not None:
+        args += ['--ssl-hosts', ','.join(ssl_hosts)]
+
+    if (timeout := params.get('timeout')) is not None:
+        args += ['--timeout', timeout]
+
+    if (proxy := params.get('proxy')) is not None:
+        args += ['--proxy', proxy]
+
+    if (publish_results := params.get('publish_results')) is not None:
+        args += ['--publish', publish_results]
+
+    if (max_age := params.get('max_age')) is not None:
+        args += ['--max-age', max_age]
+
+    return args
+
+
+special_agent_info['ssllabs'] = agent_ssllabs_arguments

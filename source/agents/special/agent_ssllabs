@@ -8,7 +8,7 @@
 # if the file in special_agents it will not work, don't now why, it looks in the wrong directory
 #
 # from cmk.special_agents.agent_cisco_ise import main
-from cmk.special_agent.agent_ssllabs import main
+from cmk.special_agents.agent_ssllabs import main
 
 if __name__ == '__main__':
     main()

@@ -1,3 +1,4 @@
+[PACKAGE]: ../../raw/master/mkp/agent_ssllabs-2.0.2-20240105.mkp "agent_ssllabs-2.0.2-20240105.mkp"
 # Qualys SSL Labs REST API special agent
 
 **Note: this package is for CheckMK version 2.x.**
