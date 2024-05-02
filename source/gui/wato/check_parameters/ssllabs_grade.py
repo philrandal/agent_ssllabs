@@ -122,5 +122,5 @@ rulespec_registry.register(
         item_spec=lambda: TextAscii(title=_('The FQDN on ssl server to check'), ),
         match_type='dict',
         parameter_valuespec=_parameter_valuespec_ssllabs_grade,
-        title=lambda: _('SSL Server via ssllabs API.'),
+        title=lambda: _('Qualys SSL Labs scan'),
     ))

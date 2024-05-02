@@ -28,7 +28,7 @@ from cmk.gui.valuespec import (
     FixedValue,
 )
 
-from cmk.gui.plugins.wato.special_agents.common import RulespecGroupDatasourceProgramsOS
+from cmk.gui.plugins.wato.special_agents.common import RulespecGroupDatasourceProgramsApps
 
 
 def _valuespec_special_agents_ssllabs():
@@ -85,7 +85,7 @@ def _valuespec_special_agents_ssllabs():
                  unit=_('Days')
              )),
         ],
-        title=_('Qualys SSL Labs server test'),
+        title=_('Qualys SSL Labs scan'),
         help=_(
             'This rule selects the ssllabs agent, which fetches SSL Server status from api.ssllabs.com.'
             'For more details about the SSL server check see https://www.ssllabs.com/ssltest/index.html.'
@@ -97,7 +97,7 @@ def _valuespec_special_agents_ssllabs():
 
 rulespec_registry.register(
     HostRulespec(
-        group=RulespecGroupDatasourceProgramsOS,
+        group=RulespecGroupDatasourceProgramsApps,
         name='special_agents:ssllabs',
         valuespec=_valuespec_special_agents_ssllabs,
     ))
