@@ -83,7 +83,7 @@ from dataclasses import dataclass
 from json import loads as json_loads, JSONDecodeError
 from typing import Tuple
 from re import compile as re_compile, match as re_match
-from time import localtime, time as now_time, strftime
+from time import time as now_time
 
 from cmk.base.plugins.agent_based.agent_based_api.v1.type_defs import (
     CheckResult,
@@ -110,7 +110,10 @@ def get_bool(field: str, data: Mapping[str: object]) -> bool | None:
 
 
 def get_int(field: str, data: Mapping[str: object]) -> bool | None:
-    return int(data[field]) if data.get(field) is not None else None
+    try:
+        return int(data[field]) if data.get(field) is not None else None
+    except ValueError:
+        return None
 
 
 @dataclass(frozen=True)
@@ -366,7 +369,7 @@ def check_ssllabs_grade(item: str, params: Mapping[str: any], section: SECTION) 
         if ssl_host.from_agent_cache is not None:
             yield Result(state=State.OK, notice=f'From agent cache: {ssl_host.from_agent_cache}')
         else:
-            yield Result(state=State.WARN, notice=f'Live data')
+            yield Result(state=State.OK, notice=f'Live data')
 
         if ssl_host.end_points:
             yield Result(state=State.OK, notice=f'\nEndpoints')
