@@ -204,14 +204,6 @@ def discovery_ssllabs_grade(section: SECTION) -> DiscoveryResult:
         yield Service(item=ssl_host)
 
 
-def collect_has_warnings(end_points: Sequence[SSLLabsEndpoint]) -> Sequence[bool]:
-    return list(set([end_point.has_warnings for end_point in end_points if end_point.has_warnings is not None]))
-
-
-def collect_is_exceptional(end_points: Sequence[SSLLabsEndpoint]) -> Sequence[bool]:
-    return list(set([end_point.is_exceptional for end_point in end_points if end_point.is_exceptional is not None]))
-
-
 def check_grade(score: Tuple, grade: str, name: str, notice_only: bool) -> Result:
     re_ok = re_compile(score[0])
     re_warn = re_compile(score[1])
