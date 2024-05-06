@@ -12,8 +12,7 @@
 # based on the ssllabs plugin from Karsten Schoeke karsten.schoeke@geobasis-bb.de
 # see https://exchange.checkmk.com/p/ssllabs
 
-# 2021-05-15: rewritten for CMK 2.0 by thl-cmk[at]outlook[dot]com
-#             moved to ~/local/lib/check_mk/base/plugins/agent_based
+# 2024-05-06: added pending to ok states for end points
 
 
 # sample string_table:
@@ -22,7 +21,7 @@
 #         "host": "thl-cmk.hopto.org",
 #         "port": 443,
 #         "protocol": "http",
-#         "isPublic": false,
+#         "isPublic": False,
 #         "status": "READY",
 #         "startTime": 1714559152230,
 #         "testTime": 1714559237958,
@@ -35,8 +34,8 @@
 #                 "statusMessage": "Ready",
 #                 "grade": "A+",
 #                 "gradeTrustIgnored": "A+",
-#                 "hasWarnings": false,
-#                 "isExceptional": true,
+#                 "hasWarnings": False,
+#                 "isExceptional": True,
 #                 "progress": 100,
 #                 "duration": 85530,
 #                 "delegation": 1
@@ -47,7 +46,7 @@
 #         "host": "checkmk.com",
 #         "port": 443,
 #         "protocol": "http",
-#         "isPublic": false,
+#         "isPublic": False,
 #         "status": "IN_PROGRESS",
 #         "startTime": 1714563744895,
 #         "engineVersion": "2.3.0",
@@ -59,8 +58,8 @@
 #                 "statusMessage": "Ready",
 #                 "grade": "A+",
 #                 "gradeTrustIgnored": "A+",
-#                 "hasWarnings": false,
-#                 "isExceptional": true,
+#                 "hasWarnings": False,
+#                 "isExceptional": True,
 #                 "progress": 100,
 #                 "duration": 72254,
 #                 "delegation": 1
@@ -296,7 +295,7 @@ def check_status(params: Mapping[str: any], end_points: Sequence[SSLLabsEndpoint
     for end_point in end_points:
         name = f'{end_point.server_name}/{end_point.ip_address}'
 
-        if end_point.status_message.lower() not in ['ready', 'in progress']:
+        if end_point.status_message.lower() not in ['ready', 'in progress', 'pending']:
             yield Result(state=State.WARN, notice=f'Status {name}: {end_point.status_message}')
 
 
@@ -304,6 +303,7 @@ def check_ssllabs_grade(item: str, params: Mapping[str: any], section: SECTION) 
     try:
         ssl_host: SSLLabsHost = section[item]
     except KeyError:
+        yield Result(state=State.UNKNOWN, summary=f'Item not found in monitoring data. ({str(section)})')
         return None
 
     value_store = get_value_store()
