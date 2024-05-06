@@ -71,7 +71,8 @@ There are nor perfdata.
 | Monitoring state if no grade was found | WARN |  |
 | Monitoring state if host has warnings | WARN |  |
 | Monitoring state if host is not exceptional | WARN | |
-| Monitoring state if the check is in "DNS resolving" state | OK | Monitoring state if the check is in "ERROR" state | WARN | |
+| Monitoring state if the check is in "DNS resolving" state | OK |
+| Monitoring state if the check is in "ERROR" state | WARN | |
 | Monitoring state if the check is in "IN_PROGRESS" state | OK | |
 | Show result detail in the service details | Off | |
 
