@@ -97,7 +97,7 @@ from cmk.special_agents.utils.agent_common import special_agent_main
 from cmk.special_agents.utils.argument_parsing import create_default_argument_parser
 from cmk.utils.paths import tmp_dir
 
-VERSION = '2.0.2'
+VERSION = '2.0.3'
 
 
 class Args(Namespace):

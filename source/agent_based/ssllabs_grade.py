@@ -13,7 +13,8 @@
 # see https://exchange.checkmk.com/p/ssllabs
 
 # 2024-05-06: added pending to ok states for end points
-
+# 2024-05-07: fixed crash on wrong params int "ERROR" state
+#             changed max CMK version in package info to 2.3.0b1
 
 # sample string_table:
 # [
@@ -326,7 +327,7 @@ def check_ssllabs_grade(item: str, params: Mapping[str: any], section: SECTION) 
                 summary=f'Started {render.timespan(now_time() - (ssl_host.start_time / 1000))} before'
             )
         case 'ERROR':
-            yield Result(state=State(params.get('state_error'), 1), notice=f'Error: {ssl_host.status_message}')
+            yield Result(state=State(params.get('state_error', 1)), notice=f'Error: {ssl_host.status_message}')
             if ssl_host.cache_expiry_time:
                 yield Result(
                     state=State.OK,
