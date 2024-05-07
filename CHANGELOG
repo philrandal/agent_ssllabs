@@ -1,2 +1,6 @@
 2021-05-15: rewritten for CMK 2.0 by thl-cmk[at]outlook[dot]com. Based on https://exchange.checkmk.com/p/ssllabs by lgbff /Karsten Schoeke karsten[dot]schoeke[at]geobasis-bb[dot]de
 2024-05-01: complete refactoring/rework
+2024-05-06: added pending to ok states for end points
+2024-05-07: fixed crash on wrong params int "ERROR" state
+            changed max CMK version in package info to 2.3.0b1
+            
