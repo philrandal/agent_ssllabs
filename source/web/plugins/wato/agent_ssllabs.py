@@ -59,8 +59,11 @@ def _valuespec_special_agents_ssllabs():
              )),
             ('proxy',
              TextAscii(
-                 title=_('proxy server, if required'),
-                 help=_('proxy in the format: https://ip-addres|servername:port'),
+                 title=_('proxy server'),
+                 size=100,
+                 help=_(
+                     'proxy in the format: <protocol>://<ip-address|server-name>:<port>, i.e.: http://192.168.10.10:3128'
+                 ),
              )),
             ('publish_results',
              FixedValue(

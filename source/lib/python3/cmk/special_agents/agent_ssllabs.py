@@ -18,6 +18,8 @@
 # 2021-05-16: changed arguments to argparse
 #             added options for publish results and max cache age
 # 2024-05-01: refactoring
+# 2024-05-16: fixed proxy usage
+#             removed check_mk section -> no way to differentiate from checkmk agent section check_mk
 
 # sample agent output (formatted)
 # <<<check_mk>>>
@@ -174,8 +176,7 @@ def connect_ssllabs_api(ssl_host_address: str, host_cache: str, args: Args, ) ->
     )
     proxies = {}
     if args.proxy is not None:
-        proxies = {'https': args.proxy.split('/')[-1]}  # remove 'https://' from proxy string
-
+        proxies = {'https': args.proxy}
     try:
         response = get(
             url=url,
@@ -215,9 +216,9 @@ def agent_ssllsbs_main(args: Args) -> int:
     ssl_hosts = args.ssl_hosts.split(',')
 
     # Output general information about the agent
-    sys_stdout.write('<<<check_mk>>>\n')
-    sys_stdout.write(f'Version: {VERSION}\n')
-    sys_stdout.write('AgentOS: linux\n')
+    # sys_stdout.write('<<<check_mk>>>\n')
+    # sys_stdout.write(f'Version: {VERSION}\n')
+    # sys_stdout.write('AgentOS: linux\n')
 
     # create cache directory, if it not exists
     Path(cache_dir).mkdir(parents=True, exist_ok=True)
