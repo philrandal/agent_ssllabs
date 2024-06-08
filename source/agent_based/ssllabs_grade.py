@@ -15,6 +15,7 @@
 # 2024-05-06: added pending to ok states for end points
 # 2024-05-07: fixed crash on wrong params int "ERROR" state
 #             changed max CMK version in package info to 2.3.0b1
+# 2024-06-04: added support for API error messages
 
 # sample string_table:
 # [
@@ -163,7 +164,8 @@ class SSLLabsHost:
     status_message: str | None
     cache_expiry_time: int | None
     from_agent_cache: bool | None
-    end_points: Sequence[SSLLabsEndpoint]
+    end_points: Sequence[SSLLabsEndpoint] | None
+    errors: Sequence[str] | None
 
     @classmethod
     def parse(cls, ssl_host):
@@ -180,7 +182,8 @@ class SSLLabsHost:
             status_message=get_str('statusMessage', ssl_host),
             cache_expiry_time=get_int('cacheExpiryTime', ssl_host),
             from_agent_cache=get_bool('from_agent_cache', ssl_host),
-            end_points=[SSLLabsEndpoint.parse(endpoint) for endpoint in ssl_host.get('endpoints', [])]
+            end_points=[SSLLabsEndpoint.parse(endpoint) for endpoint in ssl_host.get('endpoints', [])],
+            errors=[str(error) for error in ssl_host.get('errors', [])] if ssl_host.get('errors') else None,
         )
 
 
@@ -299,6 +302,10 @@ def check_ssllabs_grade(item: str, params: Mapping[str: any], section: SECTION) 
         yield Result(state=State.UNKNOWN, summary=f'Item not found in monitoring data. ({str(section)})')
         return None
 
+    if ssl_host.errors:
+        for error in ssl_host.errors:
+            yield Result(state=State.WARN, notice=error)
+
     value_store = get_value_store()
 
     match ssl_host.status:
@@ -343,6 +350,8 @@ def check_ssllabs_grade(item: str, params: Mapping[str: any], section: SECTION) 
             yield from check_has_warning(params, ssl_host.end_points)
             yield from check_is_exceptional(params, ssl_host.end_points)
             yield from check_status(params, ssl_host.end_points)
+        case None:
+            pass
         case _:
             yield Result(state=State.UNKNOWN, notice=f'Unknown test status: {ssl_host.status}')
 

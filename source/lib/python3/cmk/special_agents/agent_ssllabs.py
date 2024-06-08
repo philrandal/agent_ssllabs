@@ -20,6 +20,7 @@
 # 2024-05-01: refactoring
 # 2024-05-16: fixed proxy usage
 #             removed check_mk section -> no way to differentiate from checkmk agent section check_mk
+# 2025-06-04: changed to expose API errors to the check plugin
 
 # sample agent output (formatted)
 # <<<check_mk>>>
@@ -183,18 +184,20 @@ def connect_ssllabs_api(ssl_host_address: str, host_cache: str, args: Args, ) ->
             timeout=args.timeout,
             proxies=proxies,
             headers={
-                'User-Agent': f'CMK SSL Labs special agent {VERSION}',
+                # 'User-Agent': f'CMK SSL Labs special agent {VERSION}',
             },
         )
     except ConnectionError as e:
-        host_data = {'host': ssl_host_address, 'status': 'ConnectionError', 'error': str(e)}
+        host_data = {'host': ssl_host_address, 'errors': ['status: ConnectionError', str(e)]}
     else:
         try:
             host_data = response.json()
         except JSONDecodeError as e:
-            host_data = {'host': ssl_host_address, 'status': 'JSONDecodeError', 'error': str(e)}
+            host_data = {'host': ssl_host_address, 'errors': ['status: JSONDecodeError', str(e)]}
         if host_data.get('status') == 'READY':
             Path(host_cache).write_text(response.text)
+        elif host_data.get('errors'):
+            host_data.update({'host': ssl_host_address})
 
     return host_data
 
