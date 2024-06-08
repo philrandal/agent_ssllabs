@@ -4,4 +4,5 @@
 2024-05-07: fixed crash on wrong params int "ERROR" state
             changed max CMK version in package info to 2.3.0b1
 2024-05-16: fixed proxy usage
-            removed check_mk section -> no way to differentiate from checkmk agent section check_mk            
+            removed check_mk section -> no way to differentiate from checkmk agent section check_mk
+2025-06-04: changed to expose API errors to the check plugin
