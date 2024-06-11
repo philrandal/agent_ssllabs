@@ -10,7 +10,7 @@ To check a server manually go to [SSL Server Test](https://www.ssllabs.com/sslte
 ---
 ### Acnowlegement
 
-This plugin is based based on the ssllabs plugin from Karsten Schoeke (karsten[dot]schoeke[at]geobasis-bb[dot]de) see [ssllabs api check](https://exchange.checkmk.com/p/ssllabs) on the CheckMK exchange.
+This plugin is based on the ssllabs plugin from Karsten Schoeke (karsten[dot]schoeke[at]geobasis-bb[dot]de) see [ssllabs api check](https://exchange.checkmk.com/p/ssllabs) on the CheckMK exchange.
 
 ---
 ### Check Info:
