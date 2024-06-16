@@ -21,6 +21,7 @@
 # 2024-05-16: fixed proxy usage
 #             removed check_mk section -> no way to differentiate from checkmk agent section check_mk
 # 2025-06-04: changed to expose API errors to the check plugin
+# 2024-06-17: modified imports for CMK 2.3
 
 # sample agent output (formatted)
 # <<<check_mk>>>
@@ -96,8 +97,8 @@ from requests.exceptions import ConnectionError
 from sys import stdout as sys_stdout
 from time import time as now_time
 
-from cmk.special_agents.utils.agent_common import special_agent_main
-from cmk.special_agents.utils.argument_parsing import create_default_argument_parser
+from cmk.special_agents.v0_unstable.agent_common import special_agent_main
+from cmk.special_agents.v0_unstable.argument_parsing import create_default_argument_parser
 from cmk.utils.paths import tmp_dir
 
 VERSION = '2.0.3'
