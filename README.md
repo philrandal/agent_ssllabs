@@ -1,4 +1,4 @@
-[PACKAGE]: ../../raw/master/mkp/agent_ssllabs-2.0.5-20240617.mkp "agent_ssllabs-2.0.5-20240617.mkp"
+[PACKAGE]: ../../raw/master/mkp/agent_ssllabs-2.0.6-20240803.mkp "agent_ssllabs-2.0.6-20240803.mkp"
 # Qualys SSL Labs REST API special agent
 
 This Agent uses die Qualys SSL Labs REST API to scan a list of servers for there SSL status. The plugin will check the given server and all end points reported by the SSL Labs scan.

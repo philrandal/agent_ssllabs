@@ -16,6 +16,7 @@
 # 2024-05-07: fixed crash on wrong params int "ERROR" state
 #             changed max CMK version in package info to 2.3.0b1
 # 2024-06-04: added support for API error messages
+# 2024-08-03: fixed crash on missing start time
 
 # sample string_table:
 # [
@@ -157,7 +158,7 @@ class SSLLabsHost:
     protocol: str
     is_public: bool
     status: str
-    start_time: int
+    start_time: int | None
     test_time: int | None
     engine_version: str
     criteria_version: str
@@ -362,7 +363,8 @@ def check_ssllabs_grade(item: str, params: Mapping[str: any], section: SECTION) 
         yield Result(state=State.OK, notice=f'Host: {ssl_host.host}')
         yield Result(state=State.OK, notice=f'Port: {ssl_host.port}')
         yield Result(state=State.OK, notice=f'Protocol: {ssl_host.protocol}')
-        yield Result(state=State.OK, notice=f'Start Time: {render.datetime(ssl_host.start_time / 1000)}')
+        if ssl_host.start_time is not None:
+            yield Result(state=State.OK, notice=f'Start Time: {render.datetime(ssl_host.start_time / 1000)}')
         if ssl_host.test_time is not None:
             yield Result(state=State.OK, notice=f'Test Time: {render.datetime(ssl_host.test_time / 1000)}')
         yield Result(state=State.OK, notice=f'Engine version: {ssl_host.engine_version}')
