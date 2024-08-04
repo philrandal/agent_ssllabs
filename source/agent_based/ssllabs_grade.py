@@ -362,7 +362,8 @@ def check_ssllabs_grade(item: str, params: Mapping[str: any], section: SECTION) 
         yield Result(state=State.OK, notice=f'Host: {ssl_host.host}')
         yield Result(state=State.OK, notice=f'Port: {ssl_host.port}')
         yield Result(state=State.OK, notice=f'Protocol: {ssl_host.protocol}')
-        yield Result(state=State.OK, notice=f'Start Time: {render.datetime(ssl_host.start_time / 1000)}')
+        if ssl_host.start_time is not None:
+            yield Result(state=State.OK, notice=f'Start Time: {render.datetime(ssl_host.start_time / 1000)}')
         if ssl_host.test_time is not None:
             yield Result(state=State.OK, notice=f'Test Time: {render.datetime(ssl_host.test_time / 1000)}')
         yield Result(state=State.OK, notice=f'Engine version: {ssl_host.engine_version}')

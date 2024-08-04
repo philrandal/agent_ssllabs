@@ -15,7 +15,7 @@
            'web': ['plugins/wato/agent_ssllabs.py']},
  'name': 'agent_ssllabs',
  'title': 'ssllabs api check',
- 'version': '2.0.4-20240604',
+ 'version': '2.0.5-20240802',
  'version.min_required': '2.2.0b1',
- 'version.packaged': '2.2.0p24',
+ 'version.packaged': '2.2.0p27',
  'version.usable_until': '2.3.0b1'}
