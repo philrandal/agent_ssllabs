@@ -7,3 +7,4 @@
             removed check_mk section -> no way to differentiate from checkmk agent section check_mk
 2025-06-04: changed to expose API errors to the check plugin
 2024-06-17: modified imports for CMK 2.3
+2024-08-03: fixed crash on missing start time
