@@ -6,3 +6,4 @@
 2024-05-16: fixed proxy usage
             removed check_mk section -> no way to differentiate from checkmk agent section check_mk
 2025-06-04: changed to expose API errors to the check plugin
+2024-08-03: fixed crash on missing start time
